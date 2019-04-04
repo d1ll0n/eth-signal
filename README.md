@@ -18,7 +18,7 @@ $ npm install eth-signal --save
 ```
 
 ## Usage
-This library is simplified from the original Signal library. You really only need to be concerned with eight functions: X3DH_Sending(), X3DH_Receiving(), new DoubleRatchet(), ratchet.init(), ratchet.serialize(), DoubleRatchet.deserialize(), createAuthData(), ratchet.encryptMessage() and ratchet.decryptMessage().
+This library is simplified from the original Signal library. You really only need to be concerned with nine functions: X3DH_Sending(), X3DH_Receiving(), new DoubleRatchet(), ratchet.init(), ratchet.serialize(), DoubleRatchet.deserialize(), createAuthData(), ratchet.encryptMessage() and ratchet.decryptMessage().
 
 To start a double ratchet for messaging, you first need to derive a shared secret between the two parties. The preferred method is using the X3DH key exchange. When using the X3DH key exchange, you can optionally use a third key for the recipient called a one-time key. If you do use a one-time key, the public key must be provided as the last argument in the X3DH_Sending call and the private key provided as the last argument in the X3DH_Receiving call.
 ```js
