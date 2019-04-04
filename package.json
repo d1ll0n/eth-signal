@@ -1,0 +1,27 @@
+{
+  "name": "eth-signal",
+  "version": "0.0.1",
+  "description": "Signal Protocol implementation using secp256k1 keypairs for use with Ethereum",
+  "homepage": "https://github.com/d1ll0n/eth-signal",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d1ll0n/eth-signal"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node node_modules/.bin/mocha test"
+  },
+  "author": "Dillon Kellar",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "eccrypto": "^1.1.0",
+    "eth-crypto": "^1.3.3",
+    "eth-x3dh": "^1.0.0",
+    "ethereumjs-utils": "^5.2.5",
+    "web3-encrypt": "^1.0.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
+  }
+}
