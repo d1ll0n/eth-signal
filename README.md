@@ -39,11 +39,11 @@ async function test() {
     const msgCipher = await aliceDoubleRatchet.encryptMessage(message)
     const decipher = await bobDoubleRatchet.decryptMessage(msgCipher)
     console.log(`Decryption test: ${decipher == message ? 'PASS' : 'FAIL'}`)
-    const message2 = "Hey bob why aren't you responding"
+    const message2 = "Hey bob why aren't you responding?"
     const msgCipher2 = await aliceDoubleRatchet.encryptMessage(message2)
     let serialBob = bobDoubleRatchet.serialize()
     bobDoubleRatchet = DoubleRatchet.deserialize(serialBob)
-    const decipher2 = await bobDoubleRatchet.decryptMessage(msgCipher)
+    const decipher2 = await bobDoubleRatchet.decryptMessage(msgCipher2)
     console.log(`Serialization test: ${decipher2 == message2 ? 'PASS' : 'FAIL'}`)
 }
 test()
@@ -53,11 +53,12 @@ test()
 
 
 You can find more usage examples in the /test folder.
+##### Note
+Once a message has been decrypted, the key used to decrypt it is immediately deleted. If you want to keep messages between sessions you will need to use a custom method to do this, but keep in mind that this may significantly affect the security model of your messenger. We strongly recommend that decrypted messages only be kept on the device used to decrypt a message.
 
 ## Methods
 #### X3DH.X3DH_Sending(myIdKeyPrivate, myPreKeyPrivate, theirIdKeyPublic, theirPreKeyPublic, theirOTKeyPublic)
 Creates a shared key by getting the shared secrets of (myIdKeyPrivate, theirPreKeyPublic), (myPreKeyPrivate, theirIdKeyPublic), (myPreKeyPrivate, theirPreKeyPublic), and (myPreKeyPrivate, theirOTKeyPublic) if theirOTKeyPublic is provided, then using them all as an input to the HKDF function.
-X3DH_Sending can be used for both parties if there is no one time key used. 
 
 #### X3DH.X3DH_Receiving(myIdKeyPrivate, myPreKeyPrivate, theirIdKeyPublic, theirPreKeyPublic, myOTKeyPrivate)
 Creates a shared key by getting the shared secrets of (myIdKeyPrivate, theirPreKeyPublic), (myPreKeyPrivate, theirIdKeyPublic), (myPreKeyPrivate, theirPreKeyPublic), and (myOTKeyPrivate, theirPreKeyPublic) if myOTKeyPrivate is provided, then using them all as an input to the HKDF function. This function is only needed when a one-time key is used.
